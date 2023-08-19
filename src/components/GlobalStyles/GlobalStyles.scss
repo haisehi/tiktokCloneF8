@@ -4,6 +4,9 @@
 :root{
     --primary:rgba(254, 44, 85, 1);
 }
+*{
+    box-sizing: border-box;
+}
 
 html{
     font-size: 62.5%;
