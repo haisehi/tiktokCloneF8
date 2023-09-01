@@ -1,0 +1,81 @@
+.wrapper{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    font-weight: 700;
+    min-height: 36px;
+    min-width: 100px;
+    margin: 0 0 0 16px;
+    padding: 9px 16px;
+    border-radius: 4px;
+    background-color: var(--white);
+    cursor: pointer;
+    border: 1px solid transparent;
+    user-select: none;
+
+    &.disable{
+        pointer-events: none;
+        opacity: 0.5;
+    }
+}
+
+// button's type
+.rounded{
+    border-radius: 999px;
+    box-shadow: 0 2px 8px rgb(0 0 0 /6%);
+    border-color: rgba(22, 24, 35, 0.12);
+
+    &:hover{
+        border-color: rgba(22, 24, 35, 0.2);
+        background-color: rgba(22, 24, 35, 0.03);
+    }
+}
+
+.primary{
+    color: var(--white);
+    background-color: var(--primary);
+    border-color: var(--primary);
+    &:hover{
+        border-color: var(--primary);
+        background-color: #fe2c56df ;
+    }
+}
+
+.outline{
+    color: var(--primary);
+    border-color: currentColor;
+
+    &:hover{
+        border-color: currentColor;
+        background-color: rgba(254,44,85,0.06);
+    }
+}
+.text{
+    border-color: rgba(22, 24, 35, 0.12);
+    background-color: var(--white);
+
+    &:hover{
+        background-color: rgba(22, 24, 35, 0.03);
+    }
+}
+
+// button's size
+.small{
+    min-width: 88px;
+    padding: 4px 16px;
+}
+
+.large{
+    min-width: 200px;
+    padding: 14px 16px;
+}
+
+// icon
+.icon-left{
+    margin: 0 8px 0 0;
+}
+
+.icon-right{
+    margin: 0 0 0 8px;
+}
