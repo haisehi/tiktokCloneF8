@@ -36,10 +36,6 @@ function Menu({children , items=[],onChange=defaultFn}) {
 
     return ( 
         <Tippy
-<<<<<<< HEAD
-=======
-
->>>>>>> ff0f00b (add and customs menu languge)
             delay={[0,400]}
             interactive
             placement="bottom-end"
