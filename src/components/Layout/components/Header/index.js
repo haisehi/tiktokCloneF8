@@ -25,6 +25,8 @@ import { Wrapper as PopperWrapper } from "~/components/Popper";
 import AccountItem from "~/components/AccountItem";
 import Button from "~/components/Button";
 import Menu from "~/components/Popper/Menu";
+import { ClearIcon, SearchIcon, UploadIcon } from "~/components/Icons";
+import Image from "~/components/image";
 
 const cx = classNames.bind(styles)
 
@@ -131,12 +133,12 @@ function Header() {
                     <div className={cx('search')}>
                         <input placeholder="Search"/>
                         <button className={cx('clear')}>
-                            <FontAwesomeIcon icon={faCircleXmark}/>
+                            <ClearIcon />
                         </button>
                         <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />
 
                             <button className={cx('search-btn')}>
-                                <FontAwesomeIcon icon={faMagnifyingGlass} />
+                                <SearchIcon />
                             </button>
                     </div>
                 </HeadlessTippy>
@@ -145,7 +147,7 @@ function Header() {
                 {currentUser ? (
                     <Tippy delay={[0,200]} content="Upload video" placement="bottom">
                         <button className={cx('action-btn')}>
-                            <FontAwesomeIcon icon={faCloudUpload} />
+                            <UploadIcon />
                         </button>
                     </Tippy>
                 ) : (
@@ -159,9 +161,12 @@ function Header() {
 
                     <Menu items={currentUser ? userMenu : MENU_ITEMS} onChange={handleMenuChange}>
                         {currentUser ? (
-                            <img className={cx('user-avatar')} 
-                            src="https://i.pinimg.com/736x/32/b1/64/32b164c689fb0bd5673170c768653ec9.jpg" 
-                            alt="avatar"/>
+                            <Image 
+                            className={cx('user-avatar')} 
+                            src="https://i.pinimg.com/736x/32/b1/64/32b164c689fb0bd5673170c768653ec9.jp" 
+                            alt="avatar"
+                            //fallback="https://th.bing.com/th?id=OSK.3a3f297cc53867ef71012d15422fad1c&w=148&h=148&c=7&o=6&dpr=1.3&pid=SANGAM"
+                            />
                         ) : (
                         <button className={cx('more-btn')}>
                             <FontAwesomeIcon icon={faEllipsisVertical} />
