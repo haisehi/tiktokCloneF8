@@ -2,24 +2,28 @@ import classNames from "classnames/bind";
 import styles from "./Account.module.scss"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 
 import Image from "../image";
 
 const cx = classNames.bind(styles)
 
-function AccountItem() {
+function AccountItem({ data }) {
     return ( 
-        <div className={cx('wrapper')}>
-            <Image className={cx('avatar')} src='https://0.soompi.io/wp-content/uploads/2023/06/27054113/go-yoon-jung-3.jpeg' alt="go yoon jung" />
+        <Link to={`/@${data.nickname}`} className={cx('wrapper')}>
+            <Image 
+            className={cx('avatar')} 
+            src={data.avatar} 
+            alt={data.nickname} />
             <div className={cx('info')}>
                 <h4 className={cx('name')}>
-                    <span>go yoon jung</span>
-                    <FontAwesomeIcon className={cx('check-icon')} icon={faCheckCircle} />
+                    <span>{data.full_name}</span>
+                    {data.tick && <FontAwesomeIcon className={cx('check-icon')} icon={faCheckCircle} />}
                 </h4>
-                <span className={cx('usernames')}>go_yoon_jung</span>
+                <span className={cx('usernames')}>{data.nickname}</span>
 
             </div>
-        </div>
+        </Link>
      );
 }
 

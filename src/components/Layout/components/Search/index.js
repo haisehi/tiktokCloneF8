@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
     faSpinner,
 } from '@fortawesome/free-solid-svg-icons';
-import { useEffect, useState , useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 
 import AccountItem from "~/components/AccountItem";
 import { Wrapper as PopperWrapper } from "~/components/Popper";
@@ -17,15 +17,29 @@ function Search() {
     const [searchValue, setSearchValue] = useState('')
     const [searchResult, setSearchResult] = useState([])
     const [showResults, setShowResults] = useState(true)
-    
+    const [loading, setLoading] = useState(false)
+
     const inputRef = useRef()
 
     // useEffect của search result
     useEffect(() => {
-        setTimeout(() => {
-            setSearchResult([1])
-        }, 0)
-    }, [])
+        if(!searchValue.trim()){
+            setSearchResult([])
+            return;
+        }
+
+        setLoading(true)
+
+        fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(searchValue)}&type=less`)
+            .then((res) => res.json())
+            .then((res) => {
+                setSearchResult(res.data);
+                setLoading(false);
+            })
+            .catch(()=>{
+                setLoading(false);
+            })
+    }, [searchValue])
 
     // logic clear when clicked on clearIcon
     const handClear = () => {
@@ -47,10 +61,10 @@ function Search() {
                         <h4 className={cx('search-title')}>
                             Accounts
                         </h4>
-                        <AccountItem />
-                        <AccountItem />
-                        <AccountItem />
-                        <AccountItem />
+                        {searchResult.map((result) => (
+                            <AccountItem key={result.id} data={result} />
+                        ))}
+
                     </PopperWrapper>
                 </div>
             )}
@@ -63,17 +77,20 @@ function Search() {
                     value={searchValue}
                     placeholder="Search account and videos"
                     spellCheck={false}
-                    onChange={(e) => setSearchValue(e.target.value)}
-                    onFocus={()=> setShowResults(true)}
-                    />
+                    onChange={(e) => {
+                        e.target.value=e.target.value.trimStart()
+                        setSearchValue(e.target.value)
+                    }}
+                    onFocus={() => setShowResults(true)}
+                />
 
-                {!!searchValue && (
+                {!!searchValue && !loading && (
                     <button className={cx('clear')} onClick={handClear}>
                         <ClearIcon />
                     </button>
                 )}
 
-                {/* <FontAwesomeIcon className={cx('loading')} icon={faSpinner} /> */}
+                {loading && <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />}
 
                 <button className={cx('search-btn')}>
                     <SearchIcon />
