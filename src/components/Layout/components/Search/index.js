@@ -58,7 +58,10 @@ function Search() {
     }
 
     return (
-        <HeadlessTippy
+        //Using a wrapper <div> or <span> tag around the reference element solves this by creating a new parentNode context. 
+        <div>
+            <HeadlessTippy
+            appendTo={()=>document.body}
             interactive
             visible={showResults && searchResult.length > 0}
             render={attrs => (
@@ -103,6 +106,7 @@ function Search() {
                 </button>
             </div>
         </HeadlessTippy>
+        </div>
     );
 }
 

@@ -42,7 +42,8 @@ const MENU_ITEMS = [
                     type: faLanguage,
                     code: 'vi',
                     title: 'Tiếng Việt',
-                }
+                },
+                
             ]
         }
     },
