@@ -27,6 +27,7 @@
         background-color: transparent;
         padding: 12px 0;
         caret-color: var(--primary);
+        font-family: var(--fontFamily);
     }
 
     input:not(:placeholder-shown) ~.search-btn {

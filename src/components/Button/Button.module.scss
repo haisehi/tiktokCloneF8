@@ -13,7 +13,7 @@
     cursor: pointer;
     border: 1px solid transparent;
     user-select: none;
-    font-family: 'TikTokFont', sans-serif;
+    font-family: var(--fontFamily);
 
 
     &.disable{
