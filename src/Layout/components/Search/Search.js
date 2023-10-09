@@ -18,16 +18,16 @@ const cx = classNames.bind(styles)
 function Search() {
     const [searchValue, setSearchValue] = useState('')
     const [searchResult, setSearchResult] = useState([])
-    const [showResults, setShowResults] = useState(true)
+    const [showResults, setShowResults] = useState(false)
     const [loading, setLoading] = useState(false)
 
-    const debounce = useDebounce(searchValue, 500)
+    const debounceValue = useDebounce(searchValue, 500)
 
     const inputRef = useRef()
 
     // useEffect của search result
     useEffect(() => {
-        if (!debounce.trim()) {
+        if (!debounceValue.trim()) {
             setSearchResult([])
             return;
         }
@@ -35,7 +35,7 @@ function Search() {
         const fetchApi = async () => {
             setLoading(true)
 
-            const result = await searchService.search(debounce)
+            const result = await searchService.search(debounceValue)
             setSearchResult(result)
 
             setLoading(false)
@@ -44,7 +44,7 @@ function Search() {
 
         fetchApi()
 
-    }, [debounce])
+    }, [debounceValue])
 
     // logic clear when clicked on clearIcon
     const handClear = () => {
